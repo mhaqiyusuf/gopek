@@ -1,0 +1,36 @@
+.menu {
+    margin:0px 5px;
+}
+.profil{
+    margin: 0 10px 0 10px;
+}
+.tulisan{
+    margin-top: -10px;
+}
+
+.foto-profil{
+    margin: 0 20px 0 20px;
+    border-radius: 5%; 
+}
+img.foto-profil {
+    transition: 0.3s;
+}
+
+.ubah-foto{
+    width:90px;
+    height:90px;
+    border-radius:15%;
+    margin-bottom: 10px;
+}
+.foto-profil:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+
+div.efek {
+    transition: 0.3s;
+} 
+
+.efek:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+
