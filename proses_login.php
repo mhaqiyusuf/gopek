@@ -23,7 +23,7 @@ $sql="SELECT * FROM user WHERE username='$username' and password='$password'";
 $result=mysql_query($sql);
 
 $count = mysql_num_rows($result);
-$row = mysql_fetch_array($result);	
+$row = mysql_fetch_assoc($result);	
 
 if($count==1){
 	$_SESSION['SESS_LOGGEDIN'] = 1;

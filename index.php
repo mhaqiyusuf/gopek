@@ -24,7 +24,7 @@ require_once ("koneksi.php");
   <script src="assets/font/fontawesome/js/fontawesome-all.js"></script>
 </head>
 
-<body>
+<body id="awal">
   <header>
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
       <a class="navbar-brand logo" href="#">GoPek</a>
@@ -35,15 +35,15 @@ require_once ("koneksi.php");
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Beranda
+            <a class="nav-link js-scroll-trigger" href="#awal">Beranda
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#makanan">Makanan</a>
+            <a class="nav-link js-scroll-trigger" href="#makanan">Makanan</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#alamat">Alamat</a>
+            <a class="nav-link js-scroll-trigger" href="#alamat">Alamat</a>
           </li>
         </ul>
         <ul class="nav nav-pills justify-content-end">
@@ -110,7 +110,7 @@ require_once ("koneksi.php");
       </div>
     </div>
   </div>
-
+<section id="beranda">
   <main role="main">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
@@ -164,12 +164,13 @@ require_once ("koneksi.php");
     </a>
     </div>
   </main>
-
+                </section>
   <div class="container">
+  
     <section id="makanan">
 
       <hr class="garis">
-
+      
       <div class="row">
         <div class="col-md-4 mb-4">
         <?php if (isset($_SESSION['id'])) { ?>
@@ -188,22 +189,7 @@ require_once ("koneksi.php");
               </div>
             </div>
           </div>
-
-          <?php if (isset($_SESSION['id'])) { ?>
-          <div class="card">
-            <h5 class="card-header">
-              <i class="fa fa-cart-arrow-down fa-fw"></i> Keranjang</h5>
-            <div class="card-body">
-              <div class="alert alert-secondary" role="alert">
-                Maaf fitur ini masih belum tersedia
-                <i class="fa fa-frown-o fa-lg"></i>
-              </div>
-            </div>
-          </div>
         </div>
-      <?php } else { ?>
-      </div>
-  <?php } ?>
   <div class="col-md-8">
     <?php
           // jumlah data yang akan ditampilkan per halaman
@@ -336,8 +322,53 @@ require_once ("koneksi.php");
 
   </section>
   <hr class="garis">
+  <section class="content-section text-center">
+      <div class="container">
+        <div class="content-section-heading">
+          <h2 class="mb-5">Saat Ini Sudah Ada :</h2>
+        </div>
+        <div class="row">
+            <?php $tampil=mysql_query("select * from transaksi order by id desc");
+                  $total1=mysql_num_rows($tampil);
+                    ?>
+          <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+            <span class="service-icon efek rounded-circle mx-auto mb-3">
+            <strong><?php echo "$total1"; ?></strong>
+            </span>
+            <h4>
+              <strong>Transaksi</strong>
+            </h4>
+          </div>
+          <?php $tampil=mysql_query("select * from user order by id desc");
+                $total=mysql_num_rows($tampil);
+           ?>
+          <div class="col-lg-4 col-md-6 mb-5 mb-md-0">
+            <span class="service-icon efek rounded-circle mx-auto mb-3">
+            <strong><?php echo "$total"; ?></strong>
+            </span>
+            <h4>
+              <strong>Pengguna Terdaftar</strong>
+            </h4>
+          </div>
+          <?php $tampil=mysql_query("select * from makanan order by id desc");
+                $total2=mysql_num_rows($tampil);
+          ?>
+          <div class="col-lg-4 col-md-6">
+            <span class="service-icon efek rounded-circle mx-auto mb-3">
+            <strong><?php echo "$total2"; ?></strong>
+            </span>
+            <h4>
+              <strong>Jenis Makanan</strong>
+            </h4>
+          </div>
+        </div>
+      </section>
+      <hr class="garis">
   </div>
   </div>
+  <a class="scroll-to-top rounded js-scroll-trigger" href="#awal">
+      <i class="fa fa-angle-up"></i>
+</a>
   <section id="alamat">
     <footer class="py-5 bg-dark">
       <div class="container">
@@ -345,9 +376,54 @@ require_once ("koneksi.php");
       </div>
     </footer>
   </section>
-  <script src="assets/js/jquery-3.2.1.slim.min.js"></script>
+  
   <script src="assets/js/popper.min.js"></script>
-  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/jquery-3.2.1.slim.min.js"></script>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/jquery.easing.min.js"></script>
+
+  <script>
+    (function($) {
+  "use strict"; // Start of use strict
+
+  // Smooth scrolling using jQuery easing
+  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
+    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000, "easeInOutExpo");
+        return false;
+      }
+    }
+  });
+
+  // Scroll to top button appear
+  $(document).scroll(function() {
+    var scrollDistance = $(this).scrollTop();
+    if (scrollDistance > 100) {
+      $('.scroll-to-top').fadeIn();
+    } else {
+      $('.scroll-to-top').fadeOut();
+    }
+  });
+
+  // Closes responsive menu when a scroll trigger link is clicked
+  $('.js-scroll-trigger').click(function() {
+    $('.navbar-collapse').collapse('hide');
+  });
+
+  // Activate scrollspy to add active class to navbar items on scroll
+  $('body').scrollspy({
+    target: '#mainNav',
+    offset: 54
+  });
+
+})(jQuery); 
+    </script>
 </body>
 
 </html>

@@ -86,29 +86,26 @@ require_once ("koneksi.php");
 
             <br>
             <?php
-            if(isset($_POST['paypal']))
-            {
-            $upsql = "UPDATE transaksi SET status = 2, bayar = 1 WHERE id = " . $_SESSION['SESS_ORDERNUM'];
-            $upres = mysql_query($upsql);
-            $itemssql = "SELECT jumlah FROM transaksi WHERE id = " . $_SESSION['SESS_ORDERNUM'];
-            $itemsres = mysql_query($itemssql);
-            $row = mysql_fetch_assoc($itemsres);
+            if(isset($_POST['paypal'])){
+                if($_SESSION['SESS_LOGGEDIN']){
+                $upsql = "UPDATE transaksi SET status = 2, bayar = 'Paypal' WHERE id = " . $_SESSION['SESS_ORDERNUM'];
+                $upres = mysql_query($upsql);
+                $itemssql = "SELECT jumlah FROM transaksi WHERE id = " . $_SESSION['SESS_ORDERNUM'];
+                $itemsres = mysql_query($itemssql);
+                $row = mysql_fetch_assoc($itemsres);
 
-            if($_SESSION['SESS_LOGGEDIN'])
-            {
-            unset($_SESSION['SESS_ORDERNUM']);
-            }
-            header("Location: https://paypal.com");
-            }
-            else if(isset($_POST['tunai']))
-            {
-            $upsql = "UPDATE transaksi SET status = 2,bayar = 2 WHERE id = ". $_SESSION['SESS_ORDERNUM'];
-            $upres = mysql_query($upsql);
+                
+                    unset($_SESSION['SESS_ORDERNUM']);
+                }
+                header("Location: index.php");
+            }else if(isset($_POST['tunai'])){
+                if($_SESSION['SESS_LOGGEDIN']){
+                $upsql = "UPDATE transaksi SET status = 2,bayar = 'Tunai' WHERE id = ". $_SESSION['SESS_ORDERNUM'];
+                $upres = mysql_query($upsql);
 
-            if($_SESSION['SESS_LOGGEDIN'])
-            {
-            unset($_SESSION['SESS_ORDERNUM']);
-            }
+                
+                    unset($_SESSION['SESS_ORDERNUM']);
+                }
             ?>
             <h1>Membayar dengan Uang Tunai</h1>
             Selamat pemesanan anda sedang diantar kurang dari 24 jam akan sampai ke alamat anda.
@@ -117,7 +114,7 @@ require_once ("koneksi.php");
             ?>
             <h3><strong>Pilih Metode Pembayaran</strong></h3>
             <br>
-            <form action="pembayaran.php" metode="post">
+            <form action="<?php $_SERVER['SCRIPT_NAME'] ;?>" method="post">
             <table class="table">
             <tr>
             <td>

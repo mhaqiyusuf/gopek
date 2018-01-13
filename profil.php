@@ -136,9 +136,6 @@ if(!isset($_SESSION['id'])){
             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile"
               aria-selected="false">
               <i class="fa fa-pencil-square-o fa-fw"></i> Edit</a>
-            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact"
-              aria-selected="false">
-              <i class="fa fa-credit-card fa-fw"></i> Riwayat Transaksi</a>
           </div>
         </nav>
         <!-- Isi Tab -->
@@ -305,12 +302,6 @@ if(!isset($_SESSION['id'])){
               </div>
             </div>
                   </div>
-            <!-- Tab Riwayat Transaksi -->
-            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-            <div class="alert alert-secondary" style="text-align:center;margin:50px 50px 50px 50px" role="alert">
-             Maaf fitur ini masih belum tersedia  <i class="fa fa-frown-o fa-lg"></i>
-            </div>
-            </div>
           </div>
 
         </div>
