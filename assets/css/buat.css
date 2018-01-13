@@ -34,3 +34,34 @@ div.efek {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
 
+.service-icon {
+    background-color: rgb(17, 197, 247);
+    color: white;
+    height: 7rem;
+    width: 7rem;
+    display: block;
+    line-height: 7.5rem;
+    font-size: 2.5rem;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1); }
+
+span.efek {
+        transition: 0.3s;
+}
+
+.scroll-to-top {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    display: none;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    color: white;
+    background: rgba(87, 2, 149, 0.5);
+    line-height: 45px; }
+    .scroll-to-top:focus, .scroll-to-top:hover {
+      color: white; }
+    .scroll-to-top:hover {
+      background: #bf00ff; }
+    .scroll-to-top i {
+  font-weight: 800; }
